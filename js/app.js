@@ -1,8 +1,8 @@
 const app = new Vue({
   el: '#app',
   data: {
-    firstName: 'First',
-    lastName: 'Last',
+    firstName: '',
+    lastName: '',
     email: '',
     ticketQuantity: 1,
     ticketType: 'general',
@@ -11,25 +11,27 @@ const app = new Vue({
     purchaseAgreementSigned: false
   },
   computed: {
-    fullName: function() {
-      if (this.firstName && this.lastName) {
-    return this.firstName + ' ' + this.lastName;
-      } else {
-    return this.firstName || this.lastName;
-      }
-    },
-    ticketDescription: {
-      function() {
-        let readableTicketType = 'General Admission';
-        if (this.ticketType === 'vip') {
-          readableTicketType = 'VIP';
+    fullName: {
+      get: function() {
+        if (this.firstName && this.lastName) {
+        return this.firstName + ' ' + this.lastName;
+        } else {
+          return this.firstName || this.lastName;
         }
-        let ticketPluralization = 'tickets';
-        if (this.ticketQuantity === 1) {
-          ticketPluralization = 'ticket';
-        }
-        return this.ticketQuantity + ' ' + readableTicketType + ' ' + ticketPluralization;
       }
+    }, 
+    ticketDescription: function() {
+      let readableTicketType = 'General Admission';
+      if (this.ticketType === 'vip') {
+        readableTicketType = 'VIP';
+      }
+
+      let ticketPluralization = 'tickets';
+      if (this.ticketQuantity === 1) {
+        ticketPluralization = 'ticket';
+      }
+
+      return this.ticketQuantity + ' ' + readableTicketType + ' ' + ticketPluralization;
     }
   }
 });
