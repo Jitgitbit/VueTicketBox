@@ -14,7 +14,7 @@ const app = new Vue({
     fullName: {
       get: function() {
         if (this.firstName && this.lastName) {
-        return this.firstName + ' ' + this.lastName;
+          return this.firstName + ' ' + this.lastName;
         } else {
           return this.firstName || this.lastName;
         }
@@ -26,13 +26,13 @@ const app = new Vue({
           this.firstName = names[0];
           this.lastName = names[1];
         }
-
+        
         if (names.length <= 1) {
           this.firstName = names[0] || '';
           this.lastName = '';
         }
-      } 
-    }, 
+      }
+    },
     ticketDescription: function() {
       let readableTicketType = 'General Admission';
       if (this.ticketType === 'vip') {
@@ -46,5 +46,12 @@ const app = new Vue({
 
       return this.ticketQuantity + ' ' + readableTicketType + ' ' + ticketPluralization;
     }
-  }
+  },
+  watch: {
+    specialRequests: function(newRequests, oldRequests) {
+      if (newRequests.toLowerCase().includes('meet and greet') || newRequests.toLowerCase().includes('meet-and-greet')) {
+        this.ticketType = 'vip';
+        }
+      }
+    }
 });
