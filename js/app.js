@@ -38,7 +38,6 @@ const app = new Vue({
       if (this.ticketType === 'vip') {
         readableTicketType = 'VIP';
       }
-
       let ticketPluralization = 'tickets';
       if (this.ticketQuantity === 1) {
         ticketPluralization = 'ticket';
