@@ -76,7 +76,7 @@ const app = new Vue({
       this.ticketQuantity = 1;
       this.ticketType = 'general';
       this.referrals = [];
-      this.specialRequests = '';
+      this.specialRequests = 'some';
       this.purchaseAgreementSigned = false;
     }
   }
